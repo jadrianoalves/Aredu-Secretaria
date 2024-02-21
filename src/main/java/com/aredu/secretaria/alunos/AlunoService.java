@@ -3,6 +3,9 @@ package com.aredu.secretaria.alunos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aredu.secretaria.ApiResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @Service
 public class AlunoService {
 
@@ -13,15 +16,15 @@ public class AlunoService {
         this.apiService = apiService;
     }
 
-    public String adicionarAluno(String alunoJson) {
-        return apiService.adicionarAluno(alunoJson);
+    public ApiResponse adicionarAluno(String alunoJson) {
+        return apiService.adicionarAluno(alunoJson);       
     }
 
     public String obterTodosAlunos() {
         return apiService.obterTodosAlunos();
     }
 
-    public String obterAlunoPorId(String id) {
+    public ApiResponse obterAlunoPorId(String id) {
         return apiService.obterAlunoPorId(id);
     }
 
