@@ -37,7 +37,14 @@ public abstract class ApiCaller<T> {
 
     public ApiResponse<T> add(String dataJson) {
         try {
-            T response = restTemplate.postForObject(baseUrl, dataJson, getResponseType());
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            HttpEntity<String> requestEntity = new HttpEntity<>(dataJson, headers);
+            ResponseEntity<T> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.POST, requestEntity, getResponseType());
+
+            T response = responseEntity.getBody();
+
             return new ApiResponse<>("success", "Entidade adicionada com sucesso", response);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().is4xxClientError()) {
