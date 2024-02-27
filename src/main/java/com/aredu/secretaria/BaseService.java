@@ -3,6 +3,8 @@ package com.aredu.secretaria;
 import java.util.List;
 
 import org.springframework.web.client.HttpClientErrorException;
+
+import com.aredu.secretaria.dto.SearchRequest;
 import com.aredu.secretaria.exceptions.ApiExternalException;
 
 public abstract class BaseService<T> {
@@ -59,6 +61,17 @@ public abstract class BaseService<T> {
                 throw new ApiExternalException("Erro ao excluir entidade na API externa", e);
             }
             return "Erro ao excluir entidade: " + e.getStatusCode() + " " + e.getStatusText();
+        }
+    }
+    
+    public List<T> search(SearchRequest request) {
+        try {
+            return apiCaller.search(request);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode().is4xxClientError()) {
+                throw new ApiExternalException("Erro ao buscar alunos na API externa", e);
+            }
+            throw e;
         }
     }
 }

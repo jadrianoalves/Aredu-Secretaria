@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.aredu.secretaria.dto.SearchRequest;
+
 public abstract class BaseController<T> {
 
     protected BaseService<T> service;
@@ -43,4 +45,11 @@ public abstract class BaseController<T> {
         String response = service.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+    
+    @PostMapping("/search")
+    public ResponseEntity<List<T>> search(@RequestBody SearchRequest request) {
+        List<T> result = service.search(request);        
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
 }

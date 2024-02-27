@@ -16,8 +16,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import java.lang.reflect.ParameterizedType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
+import com.aredu.secretaria.dto.SearchRequest;
 import com.aredu.secretaria.exceptions.ApiExternalException;
 
 
@@ -94,6 +98,30 @@ public abstract class ApiCaller<T> {
                 throw new ApiExternalException("Erro ao excluir entidade na API externa", e);
             }
             return "Erro ao excluir entidade: " + e.getStatusCode() + " " + e.getStatusText();
+        }
+    }
+    
+    
+    public List<T> search(SearchRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<SearchRequest> requestEntity = new HttpEntity<>(request, headers);
+
+        try {
+            ResponseEntity<List<T>> responseEntity = restTemplate.exchange(
+                baseUrl + "/search",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<List<T>>() {}
+            );
+
+            return responseEntity.getBody();
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode().is4xxClientError()) {
+                throw new ApiExternalException("Erro ao buscar alunos na API externa", e);
+            }
+            throw e;
         }
     }
 
