@@ -17,7 +17,7 @@ public class AlunoApiCaller extends ApiCaller<Aluno> {
     @Autowired
 	public AlunoApiCaller(RestTemplateBuilder restTemplateBuilder) {
     
-    	super(restTemplateBuilder.build(), "http://localhost:5001/alunos");
+    	super(restTemplateBuilder.build(), "http://localhost:8091/api/alunos");
  	 
     }
         
