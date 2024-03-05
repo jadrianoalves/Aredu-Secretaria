@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.aredu.secretaria.dto.SearchRequest;
+import com.aredu.secretaria.ApiResponse
 
 public abstract class BaseController<T> {
 
