@@ -1,9 +1,6 @@
 package com.aredu.secretaria.alunos;
 import org.springframework.stereotype.Service;
 
-import com.aredu.secretaria.ApiCaller;
-import com.aredu.secretaria.BaseService;
-
 
 @Service
 public class AlunoService extends BaseService<Aluno> {
