@@ -1,13 +1,15 @@
 package com.aredu.secretaria.libs;
 
-import com.aredu.secretaria.libs.ApiResponse;
 import com.aredu.secretaria.dto.SearchRequest;
 import com.aredu.secretaria.exceptions.ApiExternalException;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,91 +19,77 @@ import java.util.Optional;
 @Service
 public abstract class ApiCaller<T> {
 
-    protected final RestTemplate restTemplate;
+    protected final WebClient webClient;
     protected final String baseUrl;
-
     protected final CrudMessage message;
 
-
-    public ApiCaller(RestTemplate restTemplate, String baseUrl, String entidade, String entidadePlural) {
-        this.restTemplate = restTemplate;
+    public ApiCaller(WebClient.Builder webClientBuilder, String baseUrl, String entidade, String entidadePlural) {
+        this.webClient = webClientBuilder.baseUrl(baseUrl).build();
         this.baseUrl = baseUrl;
         this.message = new CrudMessage(entidade, entidadePlural);
-
     }
 
     public T save(String dataJson) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<String> requestEntity = new HttpEntity<>(dataJson, headers);
-        ResponseEntity<T> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.POST, requestEntity, getResponseType());
-
-        return Optional.ofNullable(responseEntity.getBody())
+        return webClient.post()
+                .uri(baseUrl)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .bodyValue(dataJson)
+                .retrieve()
+                .bodyToMono(getResponseType())
+                .blockOptional()
                 .orElseThrow(() -> new ApiExternalException(message.getSaveErrorMessage()));
     }
 
     public List<T> getAll() {
-        ResponseEntity<Map<String, List<T>>> responseEntity = restTemplate.exchange(
-                baseUrl,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<Map<String, List<T>>>() {}
-        );
-
-        List<T> alunos = responseEntity.getBody().get("data");
-        System.out.println("passou aqui");
-        return Optional.ofNullable(alunos)
+        return webClient.get()
+                .uri(baseUrl)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, List<T>>>() {})
+                .map(responseBody -> responseBody.get("data"))
+                .blockOptional()
                 .orElse(Collections.emptyList());
     }
 
     public T getById(String id) {
-        ResponseEntity<Map<String, T>> responseEntity = restTemplate.exchange(
-                baseUrl + "/" + id,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<Map<String, T>>() {}
-        );
-
-        T aluno = responseEntity.getBody().get("data");
-
-        return Optional.ofNullable(aluno)
+        return webClient.get()
+                .uri(baseUrl + "/" + id)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, T>>() {})
+                .map(responseBody -> responseBody.get("data"))
+                .blockOptional()
                 .orElseThrow(() -> new ApiExternalException(message.getGetByIdErrorMessage()));
     }
 
     public T update(String id, String dataJson) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> requestEntity = new HttpEntity<>(dataJson, headers);
-        ResponseEntity<Map<String, T>> responseEntity = restTemplate.exchange(baseUrl + "/" + id, HttpMethod.PUT, requestEntity, new ParameterizedTypeReference<Map<String, T>>() {});
-
-        T updatedObject = responseEntity.getBody().get("data");
-
-        return Optional.ofNullable(updatedObject)
+        return webClient.put()
+                .uri(baseUrl + "/" + id)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .bodyValue(dataJson)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, T>>() {})
+                .map(responseBody -> responseBody.get("data"))
+                .blockOptional()
                 .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
     public String delete(String id) {
-        restTemplate.delete(baseUrl + "/" + id);
+        webClient.delete()
+                .uri(baseUrl + "/" + id)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
         return message.getDeleteSuccessMessage();
     }
 
     public List<T> search(SearchRequest request) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<SearchRequest> requestEntity = new HttpEntity<>(request, headers);
-
-        ResponseEntity<Map<String, List<T>>> responseEntity = restTemplate.exchange(
-                baseUrl + "/search",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<Map<String, List<T>>>() {}
-        );
-
-        List<T> searchResults = responseEntity.getBody().get("data");
-
-        return Optional.ofNullable(searchResults)
+        return webClient.post()
+                .uri(baseUrl + "/search")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, List<T>>>() {})
+                .map(responseBody -> responseBody.get("data"))
+                .blockOptional()
                 .orElseThrow(() -> new ApiExternalException(message.getListErrorMessage()));
     }
 

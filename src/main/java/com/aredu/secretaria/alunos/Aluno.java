@@ -4,30 +4,81 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 
 public class Aluno {
+    private Long id;
     private String nome;
-    private String sexo;
+    private String genero;
+
     private LocalDate dataNascimento;
-    private String mae;
-    private String maeProfissao;
-    private String pai;
-    private String paiProfissao;
+    private String filiacao1;
+
+    private String filiacao1Profissao;
+    private String filiacao2;
+
+    private String filiacao2Profissao;
     private String naturalidade;
+
     private String naturalidadeUf;
+
     private String enderecoLogradouro;
+
     private String enderecoNumero;
+
     private String enderecoCep;
+
     private String enderecoBairro;
+
     private String enderecoCidade;
-    private String enderecoUf;
+
+    private String enderecoCidadeUf;
+
     private String localResidencia;
     private String cpf;
     private String nacionalidade;
     private String obs;
     private String racaCor;
-    private String pcdId;
+    private String pcd;
     private String pastaId;
     private String status;
+
     private LocalDate dataInscricao;
+
+    public Aluno() {
+    }
+
+    public Aluno(String nome, String genero, LocalDate dataNascimento, String filiacao1, String filiacao1Profissao, String filiacao2, String filiacao2Profissao, String naturalidade, String naturalidadeUf, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoBairro, String enderecoCidade, String enderecoCidadeUf, String localResidencia, String cpf, String nacionalidade, String obs, String racaCor, String pcd, String pastaId, String status, LocalDate dataInscricao) {
+        this.nome = nome;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
+        this.filiacao1 = filiacao1;
+        this.filiacao1Profissao = filiacao1Profissao;
+        this.filiacao2 = filiacao2;
+        this.filiacao2Profissao = filiacao2Profissao;
+        this.naturalidade = naturalidade;
+        this.naturalidadeUf = naturalidadeUf;
+        this.enderecoLogradouro = enderecoLogradouro;
+        this.enderecoNumero = enderecoNumero;
+        this.enderecoCep = enderecoCep;
+        this.enderecoBairro = enderecoBairro;
+        this.enderecoCidade = enderecoCidade;
+        this.enderecoCidadeUf = enderecoCidadeUf;
+        this.localResidencia = localResidencia;
+        this.cpf = cpf;
+        this.nacionalidade = nacionalidade;
+        this.obs = obs;
+        this.racaCor = racaCor;
+        this.pcd = pcd;
+        this.pastaId = pastaId;
+        this.status = status;
+        this.dataInscricao = dataInscricao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -37,12 +88,12 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public LocalDate getDataNascimento() {
@@ -53,36 +104,36 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getMae() {
-        return mae;
+    public String getFiliacao1() {
+        return filiacao1;
     }
 
-    public void setMae(String mae) {
-        this.mae = mae;
+    public void setFiliacao1(String filiacao1) {
+        this.filiacao1 = filiacao1;
     }
 
-    public String getMaeProfissao() {
-        return maeProfissao;
+    public String getFiliacao1Profissao() {
+        return filiacao1Profissao;
     }
 
-    public void setMaeProfissao(String maeProfissao) {
-        this.maeProfissao = maeProfissao;
+    public void setFiliacao1Profissao(String filiacao1Profissao) {
+        this.filiacao1Profissao = filiacao1Profissao;
     }
 
-    public String getPai() {
-        return pai;
+    public String getFiliacao2() {
+        return filiacao2;
     }
 
-    public void setPai(String pai) {
-        this.pai = pai;
+    public void setFiliacao2(String filiacao2) {
+        this.filiacao2 = filiacao2;
     }
 
-    public String getPaiProfissao() {
-        return paiProfissao;
+    public String getFiliacao2Profissao() {
+        return filiacao2Profissao;
     }
 
-    public void setPaiProfissao(String paiProfissao) {
-        this.paiProfissao = paiProfissao;
+    public void setFiliacao2Profissao(String filiacao2Profissao) {
+        this.filiacao2Profissao = filiacao2Profissao;
     }
 
     public String getNaturalidade() {
@@ -141,12 +192,12 @@ public class Aluno {
         this.enderecoCidade = enderecoCidade;
     }
 
-    public String getEnderecoUf() {
-        return enderecoUf;
+    public String getEnderecoCidadeUf() {
+        return enderecoCidadeUf;
     }
 
-    public void setEnderecoUf(String enderecoUf) {
-        this.enderecoUf = enderecoUf;
+    public void setEnderecoCidadeUf(String enderecoCidadeUf) {
+        this.enderecoCidadeUf = enderecoCidadeUf;
     }
 
     public String getLocalResidencia() {
@@ -189,12 +240,12 @@ public class Aluno {
         this.racaCor = racaCor;
     }
 
-    public String getPcdId() {
-        return pcdId;
+    public String getPcd() {
+        return pcd;
     }
 
-    public void setPcdId(String pcdId) {
-        this.pcdId = pcdId;
+    public void setPcd(String pcd) {
+        this.pcd = pcd;
     }
 
     public String getPastaId() {
