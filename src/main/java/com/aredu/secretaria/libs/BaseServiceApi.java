@@ -30,9 +30,9 @@ public abstract class BaseServiceApi<T> {
                 .orElseThrow(() -> new ApiExternalException("Erro ao obter entidade por ID na API externa"));
     }
 
-    public String update(String id, String dataJson) {
+    public T update(String id, String dataJson) {
         return Optional.ofNullable(apiCaller.update(id, dataJson))
-                .orElse("Erro ao atualizar entidade na API externa");
+                .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
     public String delete(String id) {

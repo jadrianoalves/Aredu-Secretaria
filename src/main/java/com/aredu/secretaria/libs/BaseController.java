@@ -18,6 +18,8 @@ public abstract class BaseController<T> {
         this.message = new CrudMessage(entidade, entidadePlural);
     }
 
+
+
     @PostMapping
     public ResponseEntity<ApiResponse<T>> save(@RequestBody String dataJson) {
         try {
@@ -30,22 +32,22 @@ public abstract class BaseController<T> {
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<T>> getById(@PathVariable String id) {
         try {
             T response = service.getById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<T>(HttpStatus.CREATED, message.getSaveSuccessMessage(),response));
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<T>(HttpStatus.OK, message.getGetByIdSuccessMessage(),response));
         } catch (Exception e) {
-            // Tratar a exceção e retornar uma mensagem de erro adequada
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse<T>(HttpStatus.INTERNAL_SERVER_ERROR,"Erro interno ao processar a solicitação: " + e.getMessage(),null));
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> update(@PathVariable String id, @RequestBody String dataJson) {
+    public ResponseEntity<ApiResponse<T>> update(@PathVariable String id, @RequestBody String dataJson) {
         try {
-            String response = service.update(id, dataJson);
+            T response = service.update(id, dataJson);
             return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(HttpStatus.OK,message.getUpdateSuccessMessage(),response));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -68,10 +70,10 @@ public abstract class BaseController<T> {
     public ResponseEntity<ApiResponse<List<T>>> search(@RequestBody SearchRequest request) {
         try {
             List<T> result = service.search(request);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<List<T>>(HttpStatus.NO_CONTENT, message.getDeleteSuccessMessage(),result));
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<List<T>>(HttpStatus.OK, message.getListSuccessMessage(),result));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<List<T>>(HttpStatus.NO_CONTENT, message.getDeleteErrorMessage(),null));
+                    .body(new ApiResponse<List<T>>(HttpStatus.BAD_REQUEST, message.getListErrorMessage(),null));
         }
     }
 

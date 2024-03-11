@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -41,30 +42,43 @@ public abstract class ApiCaller<T> {
     }
 
     public List<T> getAll() {
-        ResponseEntity<List<T>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Map<String, List<T>>> responseEntity = restTemplate.exchange(
                 baseUrl,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<T>>() {}
+                new ParameterizedTypeReference<Map<String, List<T>>>() {}
         );
 
-        return Optional.ofNullable(responseEntity.getBody())
+        List<T> alunos = responseEntity.getBody().get("data");
+        System.out.println("passou aqui");
+        return Optional.ofNullable(alunos)
                 .orElse(Collections.emptyList());
     }
 
     public T getById(String id) {
-        return Optional.ofNullable(restTemplate.getForObject(baseUrl + "/" + id, getResponseType()))
+        ResponseEntity<Map<String, T>> responseEntity = restTemplate.exchange(
+                baseUrl + "/" + id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Map<String, T>>() {}
+        );
+
+        T aluno = responseEntity.getBody().get("data");
+
+        return Optional.ofNullable(aluno)
                 .orElseThrow(() -> new ApiExternalException(message.getGetByIdErrorMessage()));
     }
 
-    public String update(String id, String dataJson) {
+    public T update(String id, String dataJson) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> requestEntity = new HttpEntity<>(dataJson, headers);
+        ResponseEntity<Map<String, T>> responseEntity = restTemplate.exchange(baseUrl + "/" + id, HttpMethod.PUT, requestEntity, new ParameterizedTypeReference<Map<String, T>>() {});
 
-        restTemplate.exchange(baseUrl + "/" + id, HttpMethod.PUT, requestEntity, String.class);
+        T updatedObject = responseEntity.getBody().get("data");
 
-        return message.getUpdateSuccessMessage();
+        return Optional.ofNullable(updatedObject)
+                .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
     public String delete(String id) {
@@ -78,14 +92,16 @@ public abstract class ApiCaller<T> {
 
         HttpEntity<SearchRequest> requestEntity = new HttpEntity<>(request, headers);
 
-        ResponseEntity<List<T>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Map<String, List<T>>> responseEntity = restTemplate.exchange(
                 baseUrl + "/search",
                 HttpMethod.POST,
                 requestEntity,
-                new ParameterizedTypeReference<List<T>>() {}
+                new ParameterizedTypeReference<Map<String, List<T>>>() {}
         );
 
-        return Optional.ofNullable(responseEntity.getBody())
+        List<T> searchResults = responseEntity.getBody().get("data");
+
+        return Optional.ofNullable(searchResults)
                 .orElseThrow(() -> new ApiExternalException(message.getListErrorMessage()));
     }
 
