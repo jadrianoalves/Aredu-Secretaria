@@ -54,8 +54,7 @@ public abstract class ApiCaller<T> {
         return webClient.get()
                 .uri(baseUrl + "/" + id)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<String, T>>() {})
-                .map(responseBody -> responseBody.get("data"))
+                .bodyToMono(new ParameterizedTypeReference<T>() {})
                 .blockOptional()
                 .orElseThrow(() -> new ApiExternalException(message.getGetByIdErrorMessage()));
     }
@@ -66,8 +65,7 @@ public abstract class ApiCaller<T> {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .bodyValue(dataJson)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<String, T>>() {})
-                .map(responseBody -> responseBody.get("data"))
+                .bodyToMono(new ParameterizedTypeReference<T>() {})
                 .blockOptional()
                 .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
@@ -87,8 +85,7 @@ public abstract class ApiCaller<T> {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .bodyValue(request)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<String, List<T>>>() {})
-                .map(responseBody -> responseBody.get("data"))
+                .bodyToMono(new ParameterizedTypeReference<List<T>>() {})
                 .blockOptional()
                 .orElseThrow(() -> new ApiExternalException(message.getListErrorMessage()));
     }
