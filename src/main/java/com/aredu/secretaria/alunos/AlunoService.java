@@ -23,7 +23,6 @@ public class AlunoService extends BaseServiceApi<Aluno> {
 
 
 	public List<AlunoDTO> getAllAlunos() {
-
 		return Optional.ofNullable(alunoApiCaller.getAllAlunos())
 				.orElseThrow(() -> new ApiExternalException("Erro ao obter todas as entidades da API externa"));
 	}

@@ -33,6 +33,17 @@ public class AlunoApiCaller extends ApiCaller<Aluno> {
         return alunos;
     }
 
+    public boolean verificarCPF(String cpf) {
+        boolean cpfValido = webClient.get()
+                .uri(baseUrl + "/consultar-cpf?cpf={cpf}", cpf)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .blockOptional()
+                .orElse(false);
+        return cpfValido;
+    }
+
+
     @Override
     protected Class<Aluno> getResponseType() {
         return Aluno.class;
