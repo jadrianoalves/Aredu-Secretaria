@@ -13,16 +13,19 @@ public class AlunoDTO {
 	private String cpf;
 	private String mae;
 
+	private String pastaId;
+
 	public AlunoDTO() {
 
 	}
 
-	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String mae) {
+	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String mae, String pastaId) {
 		this.id = id;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.cpf = cpf;
 		this.mae = mae;
+		this.pastaId = pastaId;
 	}
 	
     public Long getId() {
@@ -64,12 +67,12 @@ public class AlunoDTO {
 	public void setMae(String mae) {
 		this.mae = mae;
 	}
-    
-    
-    
-   
-	
-   
 
-   
+	public String getPastaId() {
+		return pastaId;
+	}
+
+	public void setPastaId(String pastaId) {
+		this.pastaId = pastaId;
+	}
 }
