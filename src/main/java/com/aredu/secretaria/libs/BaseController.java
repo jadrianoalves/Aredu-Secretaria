@@ -21,59 +21,59 @@ public abstract class BaseController<T> {
 
 
     @PostMapping
-    public ResponseEntity<ApiResponse<T>> save(@RequestBody String dataJson) {
+    public ResponseEntity<T> save(@RequestBody String dataJson) {
         try {
             T response = service.save(dataJson);
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(new ApiResponse<T>(HttpStatus.CREATED, message.getSaveSuccessMessage(), response));
+                    .body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<T>(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno ao processar a solicitação", null));
+                    .body(null);
         }
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<T>> getById(@PathVariable String id) {
+    public ResponseEntity<T> getById(@PathVariable String id) {
         try {
             T response = service.getById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<T>(HttpStatus.OK, message.getGetByIdSuccessMessage(),response));
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<T>(HttpStatus.INTERNAL_SERVER_ERROR,"Erro interno ao processar a solicitação: " + e.getMessage(),null));
+                    .body(null);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<T>> update(@PathVariable String id, @RequestBody String dataJson) {
+    public ResponseEntity<T> update(@PathVariable String id, @RequestBody String dataJson) {
         try {
             T response = service.update(id, dataJson);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(HttpStatus.OK,message.getUpdateSuccessMessage(),response));
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR, message.getUpdateErrorMessage(), null));
+                    .body(null);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable String id) {
+    public ResponseEntity<String> delete(@PathVariable String id) {
         try {
             String response = service.delete(id);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<String>(HttpStatus.NO_CONTENT, message.getDeleteSuccessMessage(),response));
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<String>(HttpStatus.NO_CONTENT, message.getDeleteSuccessMessage(),null));
+                    .body(null);
         }
     }
 
     @PostMapping("/search")
-    public ResponseEntity<ApiResponse<List<T>>> search(@RequestBody SearchRequest request) {
+    public ResponseEntity<List<T>> search(@RequestBody SearchRequest request) {
         try {
             List<T> result = service.search(request);
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<List<T>>(HttpStatus.OK, message.getListSuccessMessage(),result));
+            return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<List<T>>(HttpStatus.BAD_REQUEST, message.getListErrorMessage(),null));
+                    .body(null);
         }
     }
 
