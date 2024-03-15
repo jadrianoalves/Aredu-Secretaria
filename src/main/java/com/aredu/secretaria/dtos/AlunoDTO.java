@@ -11,7 +11,7 @@ public class AlunoDTO {
 	private LocalDate dataNasc;
 
 	private String cpf;
-	private String mae;
+	private String filiacao;
 
 	private String pastaId;
 
@@ -19,12 +19,12 @@ public class AlunoDTO {
 
 	}
 
-	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String mae, String pastaId) {
+	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String filiacao, String pastaId) {
 		this.id = id;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.cpf = cpf;
-		this.mae = mae;
+		this.filiacao = filiacao;
 		this.pastaId = pastaId;
 	}
 	
@@ -60,12 +60,12 @@ public class AlunoDTO {
 		this.cpf = cpf;
 	}
 
-	public String getMae() {
-		return mae;
+	public String getFiliacao() {
+		return filiacao;
 	}
 
-	public void setMae(String mae) {
-		this.mae = mae;
+	public void setFiliacao(String filiacao) {
+		this.filiacao = filiacao;
 	}
 
 	public String getPastaId() {
