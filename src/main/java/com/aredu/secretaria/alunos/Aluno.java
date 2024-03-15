@@ -7,30 +7,19 @@ public class Aluno {
     private Long id;
     private String nome;
     private String genero;
-
     private LocalDate dataNascimento;
     private String filiacao1;
-
     private String filiacao1Profissao;
     private String filiacao2;
-
     private String filiacao2Profissao;
     private String naturalidade;
-
     private String naturalidadeUf;
-
     private String enderecoLogradouro;
-
     private String enderecoNumero;
-
     private String enderecoCep;
-
     private String enderecoBairro;
-
     private String enderecoCidade;
-
     private String enderecoCidadeUf;
-
     private String localResidencia;
     private String cpf;
     private String nacionalidade;
@@ -39,7 +28,6 @@ public class Aluno {
     private String pcd;
     private String pastaId;
     private String status;
-
     private LocalDate dataInscricao;
 
     public Aluno() {
@@ -271,4 +259,7 @@ public class Aluno {
     public void setDataInscricao(LocalDate dataInscricao) {
         this.dataInscricao = dataInscricao;
     }
+
+
+
 }
