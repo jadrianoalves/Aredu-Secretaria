@@ -10,22 +10,19 @@ import java.util.Optional;
 
 
 @Service
-public class AlunoService extends BaseServiceApi<Aluno> {
+public class AlunoPCDService extends BaseServiceApi<AlunoPCD> {
 
 	@Autowired
-	private final AlunoApiCaller alunoApiCaller;
+	private final AlunoPCDApiCaller alunoApiCaller;
 
-	
-	public AlunoService(AlunoApiCaller alunoApiCaller) {
+
+	public AlunoPCDService(AlunoPCDApiCaller alunoApiCaller) {
         super(alunoApiCaller);
         this.alunoApiCaller = alunoApiCaller;
 	}
 
 
-	public List<AlunoDTO> getAllAlunos() {
-		return Optional.ofNullable(alunoApiCaller.getAllAlunos())
-				.orElseThrow(() -> new ApiExternalException("Erro ao obter todas as entidades da API externa"));
-	}
+
 
 
 
