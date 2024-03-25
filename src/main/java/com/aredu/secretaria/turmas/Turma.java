@@ -18,6 +18,16 @@ public class Turma {
     private LocalDateTime updatedAt;
 
 
+    public Turma(Long id, Long escolaId, String nome, Integer anoLetivo, String turno, String modalidade, Integer serie) {
+        this.id = id;
+        this.escolaId = escolaId;
+        this.nome = nome;
+        this.anoLetivo = anoLetivo;
+        this.turno = turno;
+        this.modalidade = modalidade;
+        this.serie = serie;
+    }
+
     public Long getId() {
         return id;
     }
