@@ -17,6 +17,16 @@ public class AlunoPCDApiCaller extends ApiCaller<AlunoPCD> {
         super(webClientBuilder, baseUrl + ":" + port + "/api/aluno-pcd", "AlunoPCD", "AlunosPCD");
     }
 
+    public boolean addNecessidadeEspecificaAAluno(Long alunoPCDId, Long necessidadeId) {
+        boolean necessidadeAdicionada = webClient.get()
+                .uri(baseUrl + "/" + alunoPCDId  + "/necessidade/" + necessidadeId)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .blockOptional()
+                .orElse(false);
+        return necessidadeAdicionada;
+    }
+
 
 
 

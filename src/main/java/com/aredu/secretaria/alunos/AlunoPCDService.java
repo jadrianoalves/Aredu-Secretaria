@@ -21,7 +21,9 @@ public class AlunoPCDService extends BaseServiceApi<AlunoPCD> {
         this.alunoApiCaller = alunoApiCaller;
 	}
 
-
+	public boolean addNecessidadeAluno(Long alunoPCDId, Long necessidadeId){
+		return alunoApiCaller.addNecessidadeEspecificaAAluno(alunoPCDId, necessidadeId);
+	}
 
 
 

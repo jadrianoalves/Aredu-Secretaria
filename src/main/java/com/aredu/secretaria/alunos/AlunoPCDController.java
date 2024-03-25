@@ -25,6 +25,10 @@ public class AlunoPCDController extends BaseController<AlunoPCD> {
         this.alunoService = alunoService;
     }
 
+    public boolean addNecessidadeAluno(Long alunoPCDId, Long necessidadeId){
+        return alunoService.addNecessidadeAluno(alunoPCDId, necessidadeId);
+    }
+
 
 
 
