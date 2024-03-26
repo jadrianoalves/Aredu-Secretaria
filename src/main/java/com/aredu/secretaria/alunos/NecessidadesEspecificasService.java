@@ -2,7 +2,11 @@ package com.aredu.secretaria.alunos;
 
 import com.aredu.secretaria.libs.ApiCaller;
 import com.aredu.secretaria.libs.BaseServiceApi;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class NecessidadesEspecificasService extends BaseServiceApi<NecessidadeEspecifica> {
 
     private final NecessidadesEspecificasApiCaller necessidadesEspecificasApiCaller;
@@ -10,4 +14,9 @@ public class NecessidadesEspecificasService extends BaseServiceApi<NecessidadeEs
         super(apiCaller);
         this.necessidadesEspecificasApiCaller = apiCaller;
     }
+
+    public List<NecessidadeEspecifica> getAll(){
+        return necessidadesEspecificasApiCaller.getAll();
+    }
+
 }
