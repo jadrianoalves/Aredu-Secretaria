@@ -22,6 +22,7 @@ public class Aluno {
     private String enderecoCidadeUf;
     private String localResidencia;
     private String cpf;
+    private String contato;
     private String nacionalidade;
     private String obs;
     private String racaCor;
@@ -33,7 +34,7 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(String nome, String genero, LocalDate dataNascimento, String filiacao1, String filiacao1Profissao, String filiacao2, String filiacao2Profissao, String naturalidade, String naturalidadeUf, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoBairro, String enderecoCidade, String enderecoCidadeUf, String localResidencia, String cpf, String nacionalidade, String obs, String racaCor, String pcd, String pastaId, String status, LocalDate dataInscricao) {
+    public Aluno(String nome, String genero, LocalDate dataNascimento, String filiacao1, String filiacao1Profissao, String filiacao2, String filiacao2Profissao, String naturalidade, String naturalidadeUf, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoBairro, String enderecoCidade, String enderecoCidadeUf, String localResidencia, String cpf, String contato, String nacionalidade, String obs, String racaCor, String pcd, String pastaId, String status, LocalDate dataInscricao) {
         this.nome = nome;
         this.genero = genero;
         this.dataNascimento = dataNascimento;
@@ -51,6 +52,7 @@ public class Aluno {
         this.enderecoCidadeUf = enderecoCidadeUf;
         this.localResidencia = localResidencia;
         this.cpf = cpf;
+        this.contato = contato;
         this.nacionalidade = nacionalidade;
         this.obs = obs;
         this.racaCor = racaCor;
@@ -202,6 +204,14 @@ public class Aluno {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
     }
 
     public String getNacionalidade() {
