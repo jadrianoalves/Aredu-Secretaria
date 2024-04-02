@@ -1,5 +1,6 @@
 package com.aredu.secretaria.alunos;
 
+import com.aredu.secretaria.exceptions.ApiExternalException;
 import com.aredu.secretaria.libs.ApiCaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
 
 
 @Component
@@ -18,16 +20,15 @@ public class AlunoPCDApiCaller extends ApiCaller<AlunoPCD> {
         super(webClientBuilder, baseUrl + ":" + port + "/api/aluno-pcd", "AlunoPCD", "AlunosPCD");
     }
 
-    public boolean addNecessidadeEspecificaAAluno(Long alunoPCDId, Long necessidadeId) {
-        HttpStatus statusCode = (HttpStatus) webClient.post()
+    public List<NecessidadeEspecifica> addNecessidadeEspecificaAAluno(Long alunoPCDId, Long necessidadeId) {
+        return webClient.post()
                 .uri(baseUrl + "/" + alunoPCDId  + "/necessidades/" + necessidadeId)
                 .retrieve()
-                .toBodilessEntity()
-                .block()
-                .getStatusCode();
-
-        // Verifica se a solicitação foi bem-sucedida (código de status 2xx)
-        return statusCode.is2xxSuccessful();
+                .bodyToMono(AlunoPCD.class)
+                .flatMapIterable(AlunoPCD::getNecessidadesEspecificas)
+                .collectList()
+                .blockOptional()
+                .orElseThrow(() -> new ApiExternalException(message.getSaveErrorMessage()));
     }
 
 

@@ -23,7 +23,7 @@ public class AlunoPCDController extends BaseController<AlunoPCD> {
     }
 
     @PostMapping("/{alunoId}/necessidades/{necessidadeId}")
-    public boolean addNecessidadeAluno(@PathVariable Long alunoId, @PathVariable Long necessidadeId){
+    public List<NecessidadeEspecifica> addNecessidadeAluno(@PathVariable Long alunoId, @PathVariable Long necessidadeId){
         return alunoService.addNecessidadeAluno(alunoId, necessidadeId);
     }
 

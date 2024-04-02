@@ -1,6 +1,7 @@
 package com.aredu.secretaria.alunos;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class AlunoPCD {
 
@@ -18,8 +19,9 @@ public class AlunoPCD {
     private String codigoCid;
     private LocalDate dataDiagnostico;
     private String descricaoDeficiencia;
+    private Set<NecessidadeEspecifica> necessidadesEspecificas;
 
-    public AlunoPCD(Long id, Aluno aluno, String nivelSuporte, boolean deficienciaFisica, boolean deficienciaVisual, boolean deficienciaIntelectual, boolean deficienciaMental, boolean deficienciaAuditiva, boolean tea, boolean superdotacaoAltasHabilidades, String codigoCid, LocalDate dataDiagnostico, String descricaoDeficiencia) {
+    public AlunoPCD(Long id, Aluno aluno, String nivelSuporte, boolean deficienciaFisica, boolean deficienciaVisual, boolean deficienciaIntelectual, boolean deficienciaMental, boolean deficienciaAuditiva, boolean tea, boolean superdotacaoAltasHabilidades, String codigoCid, LocalDate dataDiagnostico, String descricaoDeficiencia, Set<NecessidadeEspecifica> necessidadesEspecificas) {
         this.id = id;
         this.aluno = aluno;
         this.nivelSuporte = nivelSuporte;
@@ -33,6 +35,7 @@ public class AlunoPCD {
         this.codigoCid = codigoCid;
         this.dataDiagnostico = dataDiagnostico;
         this.descricaoDeficiencia = descricaoDeficiencia;
+        this.necessidadesEspecificas = necessidadesEspecificas;
     }
 
     public Long getId() {
@@ -138,5 +141,15 @@ public class AlunoPCD {
     public void setDescricaoDeficiencia(String descricaoDeficiencia) {
         this.descricaoDeficiencia = descricaoDeficiencia;
     }
+
+    public Set<NecessidadeEspecifica> getNecessidadesEspecificas() {
+        return necessidadesEspecificas;
+    }
+
+    public void setNecessidadesEspecificas(Set<NecessidadeEspecifica> necessidadesEspecificas) {
+        this.necessidadesEspecificas = necessidadesEspecificas;
+    }
+
+
 }
 
