@@ -5,14 +5,11 @@ import com.aredu.secretaria.libs.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-
 @RequestMapping("/aluno-pcd")
 public class AlunoPCDController extends BaseController<AlunoPCD> {
 
@@ -25,8 +22,20 @@ public class AlunoPCDController extends BaseController<AlunoPCD> {
         this.alunoService = alunoService;
     }
 
-    public boolean addNecessidadeAluno(Long alunoPCDId, Long necessidadeId){
-        return alunoService.addNecessidadeAluno(alunoPCDId, necessidadeId);
+    @PostMapping("/{alunoId}/necessidades/{necessidadeId}")
+    public boolean addNecessidadeAluno(@PathVariable Long alunoId, @PathVariable Long necessidadeId){
+        return alunoService.addNecessidadeAluno(alunoId, necessidadeId);
+    }
+
+    @DeleteMapping("/{alunoId}/necessidades/{necessidadeId}")
+    public ResponseEntity<String> deleteNecessidadeEspecifica(@PathVariable Long alunoId, @PathVariable Long necessidadeId) {
+        try {
+            String response = alunoService.deleteNecessidadeEspecifica(alunoId, necessidadeId);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
     }
 
 

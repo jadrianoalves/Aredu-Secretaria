@@ -25,6 +25,11 @@ public class AlunoPCDService extends BaseServiceApi<AlunoPCD> {
 		return alunoApiCaller.addNecessidadeEspecificaAAluno(alunoPCDId, necessidadeId);
 	}
 
+	public String deleteNecessidadeEspecifica(Long alunoPCDId, Long necessidadeId) {
+		return Optional.ofNullable(alunoApiCaller.deleteNecessidadeEspecifica(alunoPCDId, necessidadeId))
+				.orElse("Erro ao excluir entidade na API externa");
+	}
+
 
 
 

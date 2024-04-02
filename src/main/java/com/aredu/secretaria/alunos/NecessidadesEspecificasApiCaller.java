@@ -1,9 +1,12 @@
 package com.aredu.secretaria.alunos;
 
+import com.aredu.secretaria.exceptions.ApiExternalException;
 import com.aredu.secretaria.libs.ApiCaller;
 import com.aredu.secretaria.turmas.Turma;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -27,6 +30,16 @@ public class NecessidadesEspecificasApiCaller extends ApiCaller<NecessidadeEspec
                 .orElse(Collections.emptyList());
 
         return necessidades;
+    }
+
+    public NecessidadeEspecifica setNecessidadeEspecifica(String alunoPCDId, String necessidadeId){
+        return webClient.post()
+                .uri(baseUrl+"/"+alunoPCDId+"/"+"necessidades/"+necessidadeId)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .retrieve()
+                .bodyToMono(getResponseType())
+                .blockOptional()
+                .orElseThrow(() -> new ApiExternalException(message.getSaveErrorMessage()));
     }
 
     @Override

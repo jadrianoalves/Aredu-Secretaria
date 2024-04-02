@@ -3,9 +3,7 @@ package com.aredu.secretaria.alunos;
 import com.aredu.secretaria.libs.BaseController;
 import com.aredu.secretaria.libs.BaseServiceApi;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,11 @@ public class NecessidadesEspecificasController extends BaseController<Necessidad
     @GetMapping
     public ResponseEntity<List<NecessidadeEspecifica>> getAll(){
         return ResponseEntity.ok().body(necessidadesEspecificasService.getAll());
+    }
+
+    @PostMapping("/")
+    public ResponseEntity setNecessidadeEspecifica(@PathVariable String alunoId, @PathVariable String necessidadeId){
+        return ResponseEntity.ok().body(necessidadesEspecificasService.setNecessidadeEspecifica(alunoId, necessidadeId));
     }
 
 }

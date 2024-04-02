@@ -19,4 +19,8 @@ public class NecessidadesEspecificasService extends BaseServiceApi<NecessidadeEs
         return necessidadesEspecificasApiCaller.getAll();
     }
 
+    public NecessidadeEspecifica setNecessidadeEspecifica(String alunoId, String necessidadeId){
+        return necessidadesEspecificasApiCaller.setNecessidadeEspecifica(alunoId, necessidadeId);
+    }
+
 }
