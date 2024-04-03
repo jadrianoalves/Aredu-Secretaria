@@ -33,7 +33,7 @@ public class AlunoPCDController extends BaseController<AlunoPCD> {
             String response = alunoService.deleteNecessidadeEspecifica(alunoId, necessidadeId);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(null);
         }
     }

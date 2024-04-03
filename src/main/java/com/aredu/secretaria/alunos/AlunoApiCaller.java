@@ -1,10 +1,13 @@
 package com.aredu.secretaria.alunos;
 
 import com.aredu.secretaria.dtos.AlunoDTO;
+import com.aredu.secretaria.exceptions.ApiExternalException;
 import com.aredu.secretaria.libs.ApiCaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -41,6 +44,17 @@ public class AlunoApiCaller extends ApiCaller<Aluno> {
                 .blockOptional()
                 .orElse(false);
         return alunoExistente;
+    }
+
+    public Aluno updatePCD(String id, String dataJson) {
+        return webClient.patch()
+                .uri(baseUrl + "/" + id)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .bodyValue(dataJson)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Aluno>() {})
+                .blockOptional()
+                .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
 

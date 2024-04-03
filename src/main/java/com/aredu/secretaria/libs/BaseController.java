@@ -61,7 +61,7 @@ public abstract class BaseController<T> {
             String response = service.delete(id);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.status(HttpStatus.OK)
                     .body(null);
         }
     }

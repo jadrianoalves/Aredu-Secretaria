@@ -7,10 +7,7 @@ import com.aredu.secretaria.libs.BaseServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,9 +36,20 @@ public class AlunoController extends BaseController<Aluno> {
             return ResponseEntity.status(HttpStatus.OK).body(result);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(null);
         }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Aluno> updateAluno(@PathVariable String id, @RequestBody String partialAluno) {
+        Aluno aluno = alunoService.updatePCD(id, partialAluno);
+
+        if (aluno == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(aluno);
     }
 
 
