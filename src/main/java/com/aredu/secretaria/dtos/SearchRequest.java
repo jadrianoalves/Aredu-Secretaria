@@ -1,4 +1,4 @@
-package com.aredu.secretaria.dto;
+package com.aredu.secretaria.dtos;
 
 import java.util.List;
 

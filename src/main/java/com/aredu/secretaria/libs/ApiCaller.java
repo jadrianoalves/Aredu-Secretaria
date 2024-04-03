@@ -1,6 +1,6 @@
 package com.aredu.secretaria.libs;
 
-import com.aredu.secretaria.dto.SearchRequest;
+import com.aredu.secretaria.dtos.SearchRequest;
 import com.aredu.secretaria.exceptions.ApiExternalException;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;

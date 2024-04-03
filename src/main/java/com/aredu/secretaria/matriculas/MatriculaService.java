@@ -2,7 +2,11 @@ package com.aredu.secretaria.matriculas;
 
 import com.aredu.secretaria.libs.ApiCaller;
 import com.aredu.secretaria.libs.BaseServiceApi;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class MatriculaService extends BaseServiceApi<Matricula> {
 
     private final MatriculaApiCaller matriculaApiCaller;
@@ -11,4 +15,8 @@ public class MatriculaService extends BaseServiceApi<Matricula> {
         this.matriculaApiCaller = apiCaller;
     }
 
+
+    public List<Matricula> getAllByAlunoId(Long alunoId) {
+        return matriculaApiCaller.getAllByAlunoId(alunoId);
+    }
 }
