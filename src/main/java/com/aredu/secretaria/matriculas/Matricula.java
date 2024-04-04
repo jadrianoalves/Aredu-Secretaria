@@ -15,12 +15,15 @@ public class Matricula {
     private String alunoFiliacao;
     private LocalDate alunoDataNasc;
     private Long turmaId;
-    private Long EscolaId;
+    private Long escolaId;
+    private String escolaNome;
     private String turmaNome;
     private String turmaTurno;
     private String responsavelNome;
     private Integer responsavelId;
     private String responsavelParentesco;
+
+    private String responsavelContato;
     private Date dataMatricula;
     private String escolaOrigem;
     private String fardamento;
@@ -100,11 +103,19 @@ public class Matricula {
     }
 
     public Long getEscolaId() {
-        return EscolaId;
+        return escolaId;
     }
 
     public void setEscolaId(Long escolaId) {
-        EscolaId = escolaId;
+        this.escolaId = escolaId;
+    }
+
+    public String getEscolaNome() {
+        return escolaNome;
+    }
+
+    public void setEscolaNome(String escolaNome) {
+        this.escolaNome = escolaNome;
     }
 
     public String getTurmaNome() {
@@ -145,6 +156,14 @@ public class Matricula {
 
     public void setResponsavelParentesco(String responsavelParentesco) {
         this.responsavelParentesco = responsavelParentesco;
+    }
+
+    public String getResponsavelContato() {
+        return responsavelContato;
+    }
+
+    public void setResponsavelContato(String responsavelContato) {
+        this.responsavelContato = responsavelContato;
     }
 
     public Date getDataMatricula() {
