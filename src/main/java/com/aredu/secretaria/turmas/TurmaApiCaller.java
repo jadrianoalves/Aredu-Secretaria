@@ -17,7 +17,28 @@ public class TurmaApiCaller extends ApiCaller<Turma> {
     }
 
     public List<Turma> getAll() {
+        List<Turma> turmas = webClient.get()
+                .uri(baseUrl)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Turma>>() {})
+                .blockOptional()
+                .orElse(Collections.emptyList());
 
+        return turmas;
+    }
+
+    public List<Turma> getAllByEscolaId(String id) {
+        List<Turma> turmas = webClient.get()
+                .uri(baseUrl+"/escola/"+id)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Turma>>() {})
+                .blockOptional()
+                .orElse(Collections.emptyList());
+
+        return turmas;
+    }
+
+    public List<Turma> getAllByEscolaId() {
         List<Turma> turmas = webClient.get()
                 .uri(baseUrl)
                 .retrieve()
