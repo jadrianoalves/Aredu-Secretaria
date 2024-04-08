@@ -23,4 +23,8 @@ public class MatriculaService extends BaseServiceApi<Matricula> {
     public List<Matricula> getAllByEscolaId(Long id) {
         return matriculaApiCaller.getAllByEscolaId(id);
     }
+
+    public List<Matricula> getAllByTurmaId(Long id) {
+        return matriculaApiCaller.getAllByTurmaId(id);
+    }
 }

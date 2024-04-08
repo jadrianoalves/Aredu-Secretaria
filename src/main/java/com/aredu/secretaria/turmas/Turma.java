@@ -14,11 +14,13 @@ public class Turma {
     private String turno;
     private String modalidade;
     private Integer serie;
+
+    private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
 
-    public Turma(Long id, Long escolaId, String nome, Integer anoLetivo, String turno, String modalidade, Integer serie) {
+    public Turma(Long id, Long escolaId, String nome, Integer anoLetivo, String turno, String modalidade, Integer serie, String status) {
         this.id = id;
         this.escolaId = escolaId;
         this.nome = nome;
@@ -26,6 +28,7 @@ public class Turma {
         this.turno = turno;
         this.modalidade = modalidade;
         this.serie = serie;
+        this.status = status;
     }
 
     public Long getId() {
@@ -82,5 +85,13 @@ public class Turma {
 
     public void setSerie(Integer serie) {
         this.serie = serie;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

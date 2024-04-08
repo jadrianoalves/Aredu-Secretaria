@@ -23,7 +23,6 @@ public class TurmaApiCaller extends ApiCaller<Turma> {
                 .bodyToMono(new ParameterizedTypeReference<List<Turma>>() {})
                 .blockOptional()
                 .orElse(Collections.emptyList());
-
         return turmas;
     }
 

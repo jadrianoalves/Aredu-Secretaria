@@ -35,6 +35,15 @@ public class MatriculaApiCaller extends ApiCaller<Matricula> {
                 .orElse(Collections.emptyList());
     }
 
+    public List<Matricula> getAllByTurmaId(Long id) {
+        return webClient.get()
+                .uri(baseUrl+"/turma/"+id)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Matricula>>() {})
+                .blockOptional()
+                .orElse(Collections.emptyList());
+    }
+
     @Override
     protected Class<Matricula> getResponseType() {
         return Matricula.class;

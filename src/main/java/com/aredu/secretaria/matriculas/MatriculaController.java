@@ -33,4 +33,10 @@ public class MatriculaController extends BaseController<Matricula> {
         return ResponseEntity.ok(matriculas);
     }
 
+    @GetMapping("/turma/{id}")
+    public ResponseEntity<List<Matricula>> getAllByTurmaId(@PathVariable Long id){
+        List<Matricula> matriculas = matriculaService.getAllByTurmaId(id);
+        return ResponseEntity.ok(matriculas);
+    }
+
 }

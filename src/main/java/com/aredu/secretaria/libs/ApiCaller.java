@@ -56,7 +56,7 @@ public abstract class ApiCaller<T> {
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<T>() {})
                 .blockOptional()
-                .orElseThrow(() -> new ApiExternalException(message.getGetByIdErrorMessage()));
+                .orElse(null);
     }
 
     public T update(String id, String dataJson) {
