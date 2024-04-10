@@ -1,5 +1,6 @@
 package com.aredu.secretaria.matriculas;
 
+import com.aredu.secretaria.dtos.MatriculaPorResponsavel;
 import com.aredu.secretaria.libs.ApiCaller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -40,6 +41,15 @@ public class MatriculaApiCaller extends ApiCaller<Matricula> {
                 .uri(baseUrl+"/turma/"+id)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<Matricula>>() {})
+                .blockOptional()
+                .orElse(Collections.emptyList());
+    }
+
+    public List<MatriculaPorResponsavel> getByEscolaIdAndResponsavelId(Long escolaId, Long responsavelId) {
+        return webClient.get()
+                .uri(baseUrl+"/responsaveis/"+escolaId+"/"+responsavelId)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<MatriculaPorResponsavel>>() {})
                 .blockOptional()
                 .orElse(Collections.emptyList());
     }

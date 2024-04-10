@@ -11,9 +11,10 @@ public class Responsavel {
 
     private Long id;
     private String nome;
+	private String apelido;
     private LocalDate dataNasc;
     private String genero;
-    private String rg;
+
     private String cpf;
     private String profissao;
     private String contatos;
@@ -22,10 +23,10 @@ public class Responsavel {
     private String enderecoNumero;
     private String enderecoCep;
     private String enderecoBairro;
-    private Integer enderecoCidade;
+    private String enderecoCidade;
     private LocalDate dataInscricao;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+	private String obs;
+
 
 	public Long getId() {
 		return id;
@@ -40,6 +41,14 @@ public class Responsavel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 
 	public LocalDate getDataNasc() {
@@ -58,13 +67,6 @@ public class Responsavel {
 		this.genero = genero;
 	}
 
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
 
 	public String getCpf() {
 		return cpf;
@@ -130,11 +132,11 @@ public class Responsavel {
 		this.enderecoBairro = enderecoBairro;
 	}
 
-	public Integer getEnderecoCidade() {
+	public String getEnderecoCidade() {
 		return enderecoCidade;
 	}
 
-	public void setEnderecoCidade(Integer enderecoCidade) {
+	public void setEnderecoCidade(String enderecoCidade) {
 		this.enderecoCidade = enderecoCidade;
 	}
 
@@ -146,23 +148,14 @@ public class Responsavel {
 		this.dataInscricao = dataInscricao;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+
+
+	public String getObs() {
+		return obs;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-    
-    
-   
 }
 

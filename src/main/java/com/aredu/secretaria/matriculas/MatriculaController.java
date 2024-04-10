@@ -1,5 +1,6 @@
 package com.aredu.secretaria.matriculas;
 
+import com.aredu.secretaria.dtos.MatriculaPorResponsavel;
 import com.aredu.secretaria.libs.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,12 @@ public class MatriculaController extends BaseController<Matricula> {
     @GetMapping("/turma/{id}")
     public ResponseEntity<List<Matricula>> getAllByTurmaId(@PathVariable Long id){
         List<Matricula> matriculas = matriculaService.getAllByTurmaId(id);
+        return ResponseEntity.ok(matriculas);
+    }
+
+    @GetMapping("/responsaveis/{escolaId}/{responsavelId}")
+    public ResponseEntity<List<MatriculaPorResponsavel>> getAllByTurmaId(@PathVariable Long escolaId, @PathVariable Long responsavelId){
+        List<MatriculaPorResponsavel> matriculas = matriculaService.getByEscolaIdAndResponsavelId(escolaId, responsavelId);
         return ResponseEntity.ok(matriculas);
     }
 
