@@ -6,10 +6,13 @@ public class MatriculaPorResponsavel {
     private Long alunoId;
     private String alunoNome;
 
-    public MatriculaPorResponsavel(Long id, Long alunoId, String alunoNome) {
+    private String pastaAlunoId;
+
+    public MatriculaPorResponsavel(Long id, Long alunoId, String alunoNome, String pastaAlunoId) {
         this.id = id;
         this.alunoId = alunoId;
         this.alunoNome = alunoNome;
+        this.pastaAlunoId = pastaAlunoId;
     }
 
     public MatriculaPorResponsavel() {
@@ -37,5 +40,13 @@ public class MatriculaPorResponsavel {
 
     public void setAlunoNome(String alunoNome) {
         this.alunoNome = alunoNome;
+    }
+
+    public String getPastaAlunoId() {
+        return pastaAlunoId;
+    }
+
+    public void setPastaAlunoId(String pastaAlunoId) {
+        this.pastaAlunoId = pastaAlunoId;
     }
 }
