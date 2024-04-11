@@ -24,6 +24,7 @@ public class Responsavel {
     private String enderecoCep;
     private String enderecoBairro;
     private String enderecoCidade;
+	private String enderecoCidadeUf;
     private LocalDate dataInscricao;
 	private String obs;
 
@@ -138,6 +139,14 @@ public class Responsavel {
 
 	public void setEnderecoCidade(String enderecoCidade) {
 		this.enderecoCidade = enderecoCidade;
+	}
+
+	public String getEnderecoCidadeUf() {
+		return enderecoCidadeUf;
+	}
+
+	public void setEnderecoCidadeUf(String enderecoCidadeUf) {
+		this.enderecoCidadeUf = enderecoCidadeUf;
 	}
 
 	public LocalDate getDataInscricao() {
