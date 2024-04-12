@@ -15,17 +15,20 @@ public class AlunoDTO {
 
 	private String pastaId;
 
+	private String pcd;
+
 	public AlunoDTO() {
 
 	}
 
-	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String filiacao, String pastaId) {
+	public AlunoDTO(Long id, String nome, LocalDate dataNasc, String cpf, String filiacao, String pastaId, String pcd) {
 		this.id = id;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.cpf = cpf;
 		this.filiacao = filiacao;
 		this.pastaId = pastaId;
+		this.pcd = pcd;
 	}
 	
     public Long getId() {
@@ -74,5 +77,13 @@ public class AlunoDTO {
 
 	public void setPastaId(String pastaId) {
 		this.pastaId = pastaId;
+	}
+
+	public String getPcd() {
+		return pcd;
+	}
+
+	public void setPcd(String pcd) {
+		this.pcd = pcd;
 	}
 }

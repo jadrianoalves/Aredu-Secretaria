@@ -5,12 +5,10 @@ import com.aredu.secretaria.dtos.MatriculaPorResponsavel;
 import com.aredu.secretaria.libs.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/matriculas")
@@ -51,6 +49,22 @@ public class MatriculaController extends BaseController<Matricula> {
     public ResponseEntity<List<MatriculaPorResponsavel>> getAllByTurmaId(@PathVariable Long escolaId, @PathVariable Long responsavelId){
         List<MatriculaPorResponsavel> matriculas = matriculaService.getByEscolaIdAndResponsavelId(escolaId, responsavelId);
         return ResponseEntity.ok(matriculas);
+    }
+
+    @PutMapping("/{id}/remanejar/{novaTurmaId}")
+    public ResponseEntity<Matricula> remanejar(@PathVariable String id, @RequestBody Long novaTurmaId) {
+        Matricula matriculaExistente = Optional.ofNullable(matriculaService.getById(id)).orElse(null);
+        if (matriculaExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Atualiza apenas a propriedade matriculaId da matrícula existente
+        Matricula matricula = matriculaExistente;
+        matricula.setTurmaId(novaTurmaId);
+
+        // Salva a matrícula atualizada
+        Matricula updatedMatricula = matriculaService.update(matricula);
+        return ResponseEntity.ok(updatedMatricula);
     }
 
 }
