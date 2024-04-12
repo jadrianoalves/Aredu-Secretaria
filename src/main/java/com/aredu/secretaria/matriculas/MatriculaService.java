@@ -1,5 +1,6 @@
 package com.aredu.secretaria.matriculas;
 
+import com.aredu.secretaria.dtos.MatriculaContagem;
 import com.aredu.secretaria.dtos.MatriculaPorResponsavel;
 import com.aredu.secretaria.libs.ApiCaller;
 import com.aredu.secretaria.libs.BaseServiceApi;
@@ -23,6 +24,10 @@ public class MatriculaService extends BaseServiceApi<Matricula> {
 
     public List<Matricula> getAllByEscolaId(Long id) {
         return matriculaApiCaller.getAllByEscolaId(id);
+    }
+
+    public List<MatriculaContagem> getResumo(Long id) {
+        return matriculaApiCaller.getResumo(id);
     }
 
     public List<Matricula> getAllByTurmaId(Long id) {
