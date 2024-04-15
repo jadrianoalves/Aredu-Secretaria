@@ -25,17 +25,17 @@ public abstract class BaseServiceApi<T> {
                 .orElseThrow(() -> new ApiExternalException("Erro ao obter todas as entidades da API externa"));
     }
 
-    public T getById(String id) {
+    public T getById(Long id) {
         return Optional.ofNullable(apiCaller.getById(id))
                 .orElseThrow(() -> new ApiExternalException("Erro ao obter entidade por ID na API externa"));
     }
 
-    public T update(String id, String dataJson) {
+    public T update(Long id, String dataJson) {
         return Optional.ofNullable(apiCaller.update(id, dataJson))
                 .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
-    public String delete(String id) {
+    public String delete(Long id) {
         return Optional.ofNullable(apiCaller.delete(id))
                 .orElse("Erro ao excluir entidade na API externa");
     }

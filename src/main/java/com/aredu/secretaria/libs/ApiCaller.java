@@ -50,7 +50,7 @@ public abstract class ApiCaller<T> {
                 .orElse(Collections.emptyList());
     }
 
-    public T getById(String id) {
+    public T getById(Long id) {
         return webClient.get()
                 .uri(baseUrl + "/" + id)
                 .retrieve()
@@ -59,7 +59,7 @@ public abstract class ApiCaller<T> {
                 .orElse(null);
     }
 
-    public T update(String id, String dataJson) {
+    public T update(Long id, String dataJson) {
         return webClient.put()
                 .uri(baseUrl + "/" + id)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -70,7 +70,7 @@ public abstract class ApiCaller<T> {
                 .orElseThrow(() -> new ApiExternalException("Erro ao editar entidade na API externa"));
     }
 
-    public String delete(String id) {
+    public String delete(Long id) {
         webClient.delete()
                 .uri(baseUrl + "/" + id)
                 .retrieve()

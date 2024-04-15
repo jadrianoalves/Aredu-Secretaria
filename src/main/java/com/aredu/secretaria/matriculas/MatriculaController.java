@@ -51,20 +51,5 @@ public class MatriculaController extends BaseController<Matricula> {
         return ResponseEntity.ok(matriculas);
     }
 
-    @PutMapping("/{id}/remanejar/{novaTurmaId}")
-    public ResponseEntity<Matricula> remanejar(@PathVariable String id, @RequestBody Long novaTurmaId) {
-        Matricula matriculaExistente = Optional.ofNullable(matriculaService.getById(id)).orElse(null);
-        if (matriculaExistente == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        // Atualiza apenas a propriedade matriculaId da matrícula existente
-        Matricula matricula = matriculaExistente;
-        matricula.setTurmaId(novaTurmaId);
-
-        // Salva a matrícula atualizada
-        Matricula updatedMatricula = matriculaService.update(matricula);
-        return ResponseEntity.ok(updatedMatricula);
-    }
 
 }

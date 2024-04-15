@@ -34,7 +34,7 @@ public abstract class BaseController<T> {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable String id) {
+    public ResponseEntity<T> getById(@PathVariable Long id) {
         try {
             T response = service.getById(id);
             return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -45,7 +45,7 @@ public abstract class BaseController<T> {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<T> update(@PathVariable String id, @RequestBody String dataJson) {
+    public ResponseEntity<T> update(@PathVariable Long id, @RequestBody String dataJson) {
         try {
             T response = service.update(id, dataJson);
             return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -56,7 +56,7 @@ public abstract class BaseController<T> {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
             String response = service.delete(id);
             return ResponseEntity.status(HttpStatus.OK).body(response);
