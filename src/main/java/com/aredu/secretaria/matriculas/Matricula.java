@@ -6,23 +6,17 @@ import java.util.Date;
 
 
 public class Matricula {
-
     private Long id;
     private String anoLetivo;
     private Long alunoId;
     private String alunoNome;
-    private String alunoCpf;
-    private String alunoFiliacao;
     private LocalDate alunoDataNasc;
     private Long turmaId;
     private Long escolaId;
-    private String escolaNome;
     private String turmaNome;
     private String turmaTurno;
-    private String responsavelNome;
     private Integer responsavelId;
     private String responsavelParentesco;
-
     private String responsavelContato;
     private Date dataMatricula;
     private String escolaOrigem;
@@ -70,22 +64,6 @@ public class Matricula {
         this.alunoNome = alunoNome;
     }
 
-    public String getAlunoCpf() {
-        return alunoCpf;
-    }
-
-    public void setAlunoCpf(String alunoCpf) {
-        this.alunoCpf = alunoCpf;
-    }
-
-    public String getAlunoFiliacao() {
-        return alunoFiliacao;
-    }
-
-    public void setAlunoFiliacao(String alunoFiliacao) {
-        this.alunoFiliacao = alunoFiliacao;
-    }
-
     public LocalDate getAlunoDataNasc() {
         return alunoDataNasc;
     }
@@ -110,14 +88,6 @@ public class Matricula {
         this.escolaId = escolaId;
     }
 
-    public String getEscolaNome() {
-        return escolaNome;
-    }
-
-    public void setEscolaNome(String escolaNome) {
-        this.escolaNome = escolaNome;
-    }
-
     public String getTurmaNome() {
         return turmaNome;
     }
@@ -132,14 +102,6 @@ public class Matricula {
 
     public void setTurmaTurno(String turmaTurno) {
         this.turmaTurno = turmaTurno;
-    }
-
-    public String getResponsavelNome() {
-        return responsavelNome;
-    }
-
-    public void setResponsavelNome(String responsavelNome) {
-        this.responsavelNome = responsavelNome;
     }
 
     public Integer getResponsavelId() {

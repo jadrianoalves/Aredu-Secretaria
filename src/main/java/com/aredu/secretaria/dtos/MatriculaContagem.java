@@ -7,14 +7,16 @@ public class MatriculaContagem {
     private Long TurmaId;
     private Integer anoLetivo;
     private String turno;
+    private String status;
 
 
-    public MatriculaContagem(Long id, Long alunoId, Long turmaId, Integer anoLetivo, String turno) {
+    public MatriculaContagem(Long id, Long alunoId, Long turmaId, Integer anoLetivo, String turno, String status) {
         this.id = id;
         this.alunoId = alunoId;
         this.TurmaId = turmaId;
         this.anoLetivo = anoLetivo;
         this.turno = turno;
+        this.status = status;
     }
 
     public Long getId() {
@@ -55,5 +57,13 @@ public class MatriculaContagem {
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
