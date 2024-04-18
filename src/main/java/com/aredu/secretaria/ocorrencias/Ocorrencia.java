@@ -8,6 +8,8 @@ public class Ocorrencia {
 
     private String descricao;
 
+    private String detalhamento;
+
     private Long matriculaId;
 
     private Long alunoId;
@@ -30,6 +32,14 @@ public class Ocorrencia {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getDetalhamento() {
+        return detalhamento;
+    }
+
+    public void setDetalhamento(String detalhamento) {
+        this.detalhamento = detalhamento;
     }
 
     public Long getMatriculaId() {

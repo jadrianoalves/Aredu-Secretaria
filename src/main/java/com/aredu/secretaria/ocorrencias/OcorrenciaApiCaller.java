@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class OcorrenciaApiCaller extends ApiCaller<Ocorrencia> {
 
-    public OcorrenciaApiCaller(WebClient.Builder webClientBuilder, @Value("${baseUrl}") String baseUrl, @Value("${ocorrenciasServer.port}") int port) {
+    public OcorrenciaApiCaller(WebClient.Builder webClientBuilder, @Value("${baseUrl}") String baseUrl, @Value("${ocorrenciaServer.port}") int port) {
         super(webClientBuilder, baseUrl + ":" + port + "/api/ocorrencias", "Ocorrencia", "Ocorrencias");
     }
 
