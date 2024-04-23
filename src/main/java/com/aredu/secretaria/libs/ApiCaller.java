@@ -44,10 +44,9 @@ public abstract class ApiCaller<T> {
         return webClient.get()
                 .uri(baseUrl)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<String, List<T>>>() {})
-                .map(responseBody -> responseBody.get("data"))
-                .blockOptional()
-                .orElse(Collections.emptyList());
+                .bodyToFlux(new ParameterizedTypeReference<T>() {})
+                .collectList()
+                .block();
     }
 
     public T getById(Long id) {
