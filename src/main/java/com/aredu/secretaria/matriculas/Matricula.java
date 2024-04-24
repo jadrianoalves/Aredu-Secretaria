@@ -13,6 +13,7 @@ public class Matricula {
     private LocalDate alunoDataNasc;
     private Long turmaId;
     private Long escolaId;
+    private String escolaNome;
     private String turmaNome;
     private String turmaTurno;
     private Integer responsavelId;
@@ -86,6 +87,14 @@ public class Matricula {
 
     public void setEscolaId(Long escolaId) {
         this.escolaId = escolaId;
+    }
+
+    public String getEscolaNome() {
+        return escolaNome;
+    }
+
+    public void setEscolaNome(String escolaNome) {
+        this.escolaNome = escolaNome;
     }
 
     public String getTurmaNome() {
