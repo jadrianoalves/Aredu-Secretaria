@@ -1,18 +1,14 @@
 package com.aredu.secretaria.alunos;
 
 import com.aredu.secretaria.dtos.AlunoDTO;
-import com.aredu.secretaria.libs.ApiResponse;
 import com.aredu.secretaria.libs.BaseController;
-import com.aredu.secretaria.libs.BaseServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-
 @RequestMapping("/alunos")
 public class AlunoController extends BaseController<Aluno> {
 
@@ -24,7 +20,6 @@ public class AlunoController extends BaseController<Aluno> {
         super(alunoService,"Aluno", "Alunos");
         this.alunoService = alunoService;
     }
-
 
     @GetMapping
     public ResponseEntity<List<AlunoDTO>> getAll() {
