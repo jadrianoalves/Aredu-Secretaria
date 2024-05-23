@@ -6,6 +6,8 @@ import java.time.LocalDate;
 public class Aluno {
     private Long id;
     private String nome;
+
+    private String nomeSocial;
     private String genero;
     private LocalDate dataNascimento;
     private String filiacao1;
@@ -36,8 +38,9 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(String nome, String genero, LocalDate dataNascimento, String filiacao1, String filiacao1Profissao, String filiacao2, String filiacao2Profissao, String naturalidade, String naturalidadeUf, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoBairro, String enderecoCidade, String enderecoCidadeUf, String localResidencia, String cpf, String sus, String contato, String email, String nacionalidade, String obs, String racaCor, String pcd, String pastaId, String status, LocalDate dataInscricao) {
+    public Aluno(String nome, String nomeSocial, String genero, LocalDate dataNascimento, String filiacao1, String filiacao1Profissao, String filiacao2, String filiacao2Profissao, String naturalidade, String naturalidadeUf, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoBairro, String enderecoCidade, String enderecoCidadeUf, String localResidencia, String cpf, String sus, String contato, String email, String nacionalidade, String obs, String racaCor, String pcd, String pastaId, String status, LocalDate dataInscricao) {
         this.nome = nome;
+        this.nomeSocial = nomeSocial;
         this.genero = genero;
         this.dataNascimento = dataNascimento;
         this.filiacao1 = filiacao1;
@@ -80,6 +83,14 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNomeSocial() {
+        return nomeSocial;
+    }
+
+    public void setNomeSocial(String nomeSocial) {
+        this.nomeSocial = nomeSocial;
     }
 
     public String getGenero() {
